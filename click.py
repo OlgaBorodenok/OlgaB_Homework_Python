@@ -1,0 +1,25 @@
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service as ChromeService
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+
+driver.get("http://uitestingplayground.com/ajax")
+    
+button = driver.find_element(By.ID, "ajaxButton")
+button.click()
+print("Кнопка нажата")
+    
+wait = WebDriverWait(driver, 20)
+    
+green_text = wait.until(
+    EC.visibility_of_element_located((By.XPATH, "//p[contains(text(), 'Data loaded')]"))
+    )
+    
+txt = green_text.text
+print(f"Текст из зеленой плашки: {txt}")
+    
+driver.quit()
