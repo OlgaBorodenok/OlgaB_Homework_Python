@@ -1,0 +1,12 @@
+# Секретные данные
+config.py
+
+# Кеш Python
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Виртуальное окружение
+venv/
+env/
+.venv/
